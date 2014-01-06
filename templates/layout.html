@@ -1,0 +1,17 @@
+@require(path_for)
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Řazení plateb</title>
+        <link href="@path_for('static', path='site.css')"
+            type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1><a href="./">Řazení plateb</a></h1>
+        <div id="main">
+            @def content():
+            @end
+            @content()
+        </div>
+    </body>
+</html>

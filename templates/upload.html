@@ -1,0 +1,21 @@
+@extends("layout.html")
+
+@def content():
+@require(path_for)
+<h1>Zvol exportovaný CSV výpis z účtu</h1>
+<div class="fileUpload">
+    <form method="post" enctype="multipart/form-data">
+    <label>
+        CSV Soubor:
+        <input type="file" name="exported" />
+    </label>
+    <label>
+        Vynechat první řádek (hlavičky sloupců)
+        <input type="checkbox" name="skipfirst" checked="checked" value="true" />
+    </label>
+    <label>
+        Použít středník jako oddělovač
+        <input type="checkbox" name="semicol" value="true" />
+    </label>
+    <input type="submit" value="Zpracovat" />
+</div>

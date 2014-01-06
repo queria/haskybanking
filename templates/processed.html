@@ -1,0 +1,50 @@
+@extends("layout.html")
+
+@def content():
+@require(path_for, payments, accounts, months, ignored)
+
+<a href="@path_for('index')">Nahrát další soubor</a>
+
+<h1>Roztříděný seznam plateb</h1>
+
+@if payments:
+
+    <ul class="accounts">
+        @for acc in sorted(accounts.keys()):
+        <li class="account"><strong>@acc (@accounts[acc])</strong>
+            <ul>
+                @for month in sorted(months):
+                <li class="month">@month
+                    <ul>
+                        @for p in payments[acc][month]:
+                        <li title="@p['extra']">
+                            <strong>@str(p['value']) @p['currency']</strong>
+                            /
+                            VS:@p['varsym']
+                            KS:@p['consym'] SS:@p['specsym']
+                            Poznámka: @p['note']
+                        </li>
+                        @end
+                    </ul>
+                </li>
+                @end
+            </ul>
+        </li>
+        @end
+    </ul>
+
+@else:
+    <p>Žádné platby!</p>
+@end
+
+@if ignored:
+    <div class="ignored"><h2>Ignorované záznamy:</h2>
+    @for rec_err in ignored:
+        <p>
+            @unicode(rec_err)
+        </p>
+    @end
+    </div>
+@end
+
+<a href="@path_for('index')">Nahrát další soubor</a>

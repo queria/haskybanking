@@ -1,0 +1,9 @@
+@extends("layout.html")
+
+@def content():
+@require(path_for, exc)
+<h1>Interní chyba</h1>
+<div class="error">
+    Došlo k (ne)očekávané chybě:
+    <pre>@exc</pre>
+</div>
