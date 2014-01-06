@@ -3,6 +3,7 @@ Main configuration
 """
 
 import logging
+import os
 import sys
 
 from wheezy.html.ext.template import WidgetExtension
@@ -13,9 +14,15 @@ from wheezy.template.loader import FileLoader
 from wheezy.web.templates import WheezyTemplate
 
 
-DEBUG = True
+APPDIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')
 
-TPL_PATH = ['templates']
+
+def app_path(path):
+    return os.path.join(APPDIR, path)
+
+
+DEBUG = True
+TPL_PATH = [app_path('templates')]
 engine = Engine(
     loader=FileLoader(TPL_PATH),
     extensions=[

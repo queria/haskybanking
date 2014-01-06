@@ -15,7 +15,6 @@ from wheezy.web.middleware import path_routing_middleware_factory
 from wheezy.web import handlers
 from wheezy.routing import url
 from wheezy.web.handlers import file_handler
-#from wheezy.web.handlers import file_handler
 
 from haskybanking import config
 
@@ -196,13 +195,9 @@ class InvalidLineError(Exception):
 
 url_map = [
     url('', MainView, name='index'),
-    #url('users/', user.List, name='user-list'),
-    #url('users/{id:int}', user.View, name='user-view'),
-    #url('register/', user.Create, name='user-add'),
-    # url('add', views.AddGreeting, name='add'),
-    # url('view/{id:int}', views.ViewGreeting, name='view'),
-    url('static/{path:any}', file_handler(root='static/'), name='static'),
-    #url('.*', views.NotFound, name='not-found'),
+    url('static/{path:any}',
+        file_handler(root=config.app_path('static/')),
+        name='static'),
 ]
 
 application = WSGIApplication(
