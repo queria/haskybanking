@@ -3,11 +3,11 @@
 
 set -o errexit
 
+
 cd $(dirname $0)
-if [[ ! -d .venv ]]; then
-    virtualenv --system-site-packages .venv
-fi
+
+./install.sh
+
 . .venv/bin/activate
-pip install -r requirements.txt
 pip install -r dev-requirements.txt
 
