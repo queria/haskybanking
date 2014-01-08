@@ -6,8 +6,11 @@ set -o errexit
 cd $(dirname $0)
 
 if [[ ! -d .venv ]]; then
-    virtualenv --system-site-packages .venv
+    virtualenv --no-site-packages .venv
 fi
 
 . .venv/bin/activate
+if [[ -z "$VIRTUAL_ENV" || "$(which pip)" == "/usr/bin/pip" ]]; then
+    echo "VirtualEnv activation failed?!"
+fi
 pip install -r requirements.txt
